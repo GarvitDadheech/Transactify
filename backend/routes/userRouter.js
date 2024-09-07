@@ -4,6 +4,7 @@ const { User } = require("../db");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const {JWT_SECRET} = require("../config");
+const bcrypt = require('bcrypt');
 
 const signUpBody = zod.object({
     username: zod.string(),
@@ -31,9 +32,11 @@ router.post("/signup",async (req,res) => {
         });
     }
 
+    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+
     const user = await User.create({
         username: req.body.username,
-        password: req.body.password,
+        password: hashedPassword,
         firstName: req.body.firstName,
         lastName: req.body.lastName,
     })
