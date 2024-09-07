@@ -5,6 +5,7 @@ const router = express.Router();
 const jwt = require("jsonwebtoken");
 const {JWT_SECRET} = require("../config");
 const bcrypt = require('bcrypt');
+const  { authMiddleware } = require("../middleware");
 
 const signUpBody = zod.object({
     username: zod.string(),
@@ -95,8 +96,5 @@ router.post("/login",async (req,res) => {
     })
 
 }) 
-
-
-
 
 module.exports = router;
