@@ -13,6 +13,11 @@ const signUpBody = zod.object({
     password: zod.string()
 })
 
+const loginBody = zod.object({
+    username: zod.string(),
+    password: zod.string()
+})
+
 router.post("/signup",async (req,res) => {
     const {success} = signUpBody.safeParse(req.body);
 
@@ -53,5 +58,45 @@ router.post("/signup",async (req,res) => {
     })
 
 })
+
+router.post("/login",async (req,res) => {
+    const {success} = loginBody.safeParse(req.body);
+
+    if(!success) {
+        res.status(411).json({
+            message: "Incorrect Inputs"
+        })
+    }
+
+    const user = await User.findOne({
+        username: req.body.username
+    });
+
+    if(!user) {
+        res.status(411).json({
+            message: "User does not exists"
+        })
+    }
+
+    const isMatch = await bcrypt.compare(req.body.password, user.password);
+
+    if (!isMatch) {
+        return res.status(401).json({
+            message: "Invalid username or password"
+        });
+    }
+
+    const token = jwt.sign({
+        userId: user._id
+    },JWT_SECRET);
+
+    res.json({
+        token: token
+    })
+
+}) 
+
+
+
 
 module.exports = router;
