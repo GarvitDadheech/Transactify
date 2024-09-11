@@ -18,7 +18,7 @@ export default function Signup() {
                 <p className="text-lg">
                     Already have an account?
                     <span className="ml-2">
-                        <Link to="/login" className="text-lg underline">
+                        <Link to="/signin" className="text-lg underline">
                         Login
                         </Link>
                     </span>
