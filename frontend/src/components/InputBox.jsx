@@ -5,7 +5,6 @@ export default function InputBox({Title,PlaceHolder,Type}) {
                 {Title}
             </label>
             <input 
-                type="text" 
                 id="box" 
                 name="box" 
                 placeholder={PlaceHolder} 
