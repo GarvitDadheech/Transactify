@@ -1,8 +1,8 @@
 export default function User({username,imgLink,showButton}) {
     return(
         <div className="flex justify-between mt-10 mb-5 mr-8">
-            <div className="flex w-[8rem] justify-between">
-                <img src={imgLink} className="rounded bg-black h-10 w-10 mr-4"/>
+            <div className="flex w-[9rem] justify-between">
+                <p className="rounded-3xl border-black border-2 h-10 w-10 flex justify-center items-center font-bold text-[20px] mr-3">U</p>
                 <h1 className="font-bold text-[1.8rem]">{username}</h1>
             </div>
             {showButton && (
