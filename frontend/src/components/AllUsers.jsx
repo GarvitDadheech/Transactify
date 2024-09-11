@@ -12,7 +12,7 @@ export default function AllUsers() {
                 className=" mr-8 h-12 shadow-slate-900 px-4 py-2 border border-gray-300 rounded-md shadow-sm focus:border-black placeholder:text-gray-450 placeholder:text-slate-500"
                 autoComplete="off"
             />
-            <User username={"Garvit"} imgLink={"https://a.png"}/>
+            <User username={"Garvit"} imgLink={"https://a.png"} showButton={true}/>
         </div>
     )
 }
