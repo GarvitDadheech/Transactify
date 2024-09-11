@@ -10,8 +10,8 @@ export default function Signin() {
             <div className="flex flex-col justify-around items-center bg-white rounded-3xl h-[550px] w-[30rem]">
                 <Heading value={"Sign In"}/>
                 <Subheading value={"Enter your credentials to access your Account"}/>
-                <InputBox Title={"User Name"} PlaceHolder={"JohnDoe@paytm"}/>
-                <InputBox Title={"Password"} PlaceHolder={""}/>
+                <InputBox Title={"User Name"} PlaceHolder={"JohnDoe@paytm"} Type={"text"}/>
+                <InputBox Title={"Password"} PlaceHolder={""} Type={"password"}/>
                 <Button content={"Sign In"}/>
                 <p className="text-lg">
                     Don't have an Account?
