@@ -148,4 +148,10 @@ router.put("/bulk",authMiddleware,async (req,res) => {
     })
 });
 
+router.get("/me", authMiddleware, (req, res) => {
+    res.json({
+        id: req.userId
+    });
+});
+
 module.exports = router;
