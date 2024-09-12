@@ -150,6 +150,21 @@ router.get("/bulk",async (req,res) => {
     })
 });
 
+router.get("/getInfo",authMiddleware,(req,res) => {
+    const id = req.userId;
+    const user = User.findOne({
+        _id: id
+    })
+    if(!user) {
+        res.status(411).json({
+            message: "No user Exists!"
+        })
+    }
+    res.json({
+        user: user
+    })
+})
+
 router.get("/me", authMiddleware, (req, res) => {
     res.json({
         id: req.userId
