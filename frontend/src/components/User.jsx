@@ -1,4 +1,12 @@
-export default function User({ firstName, lastName, showButton }) {
+import { useNavigate } from "react-router-dom";
+
+export default function User({ firstName, lastName, id}) {
+    const navigate = useNavigate();
+
+    const handleClick = () => {
+        navigate("/send?id="+id+"&name="+firstName);
+    };
+
     return (
         <div className="flex justify-between mt-10 mb-5 mr-8 ml-8">
             <div className="flex w-[25rem] justify-start">
@@ -9,11 +17,12 @@ export default function User({ firstName, lastName, showButton }) {
                     <h1 className="font-bold text-[1.8rem]">{`${firstName} ${lastName}`}</h1>
                 </div>
             </div>
-            {showButton && (
-                <button className="bg-black hover:bg-slate-800 text-white font-bold text-[20px] py-2 px-2 rounded w-[9rem] h-12 text-xl">
-                    Send Money
-                </button>
-            )}
+            <button
+                className="bg-black hover:bg-slate-800 text-white font-bold text-[20px] py-2 px-2 rounded w-[9rem] h-12 text-xl"
+                onClick={handleClick}
+            >
+                Send Money
+            </button>
         </div>
     );
 }

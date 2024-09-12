@@ -14,7 +14,6 @@ export default function AllUsers() {
         };
     };
 
-
     const fetchUsers = async () => {
         try {
             const response = await axios.get(`http://localhost:3000/api/v1/user/bulk?filter=${filter}`);
@@ -25,7 +24,6 @@ export default function AllUsers() {
         }
     };
 
-   
     const debouncedFetchUsers = useCallback(debounce(fetchUsers, 500), [filter]);
 
     useEffect(() => {
@@ -52,10 +50,10 @@ export default function AllUsers() {
             {users.length > 0 ? (
                 users.map(user => (
                     <User 
-                        key={user.id} 
+                        key={user._id} 
                         firstName={user.firstName} 
                         lastName={user.lastName} 
-                        showButton={true} 
+                        id={user._id}
                     />
                 ))
             ) : (
