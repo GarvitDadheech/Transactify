@@ -25,7 +25,6 @@ router.post("/transfer", authMiddleware, async (req, res) => {
         const userId = new ObjectId(req.userId);
         console.log('Request User ID:', userId);
         
-        // Find account with the correct userId
         const account = await Account.findOne({
             userId: userId
         }).session(session);

@@ -5,11 +5,14 @@ import InputBox from "../components/InputBox";
 import Subheading from "../components/Subheading";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {userAtom} from "../store/atoms/userAtom"
 
 export default function Signin() {
     const [username,setUserName] = useState("");
     const [password,setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
+    const setUserAtom = useSetRecoilState(userAtom);
     const navigate = useNavigate();
     const handleSigin = async () => {
         try{
@@ -19,6 +22,7 @@ export default function Signin() {
             }
             const res = await axios.post("http://localhost:3000/api/v1/user/login",userData)
             localStorage.setItem("token", res.data.token);
+            setUserAtom(username);
             navigate("/dashboard");
         }
         catch(error) {

@@ -6,6 +6,8 @@ import Subheading from "../components/Subheading";
 import { Link } from "react-router-dom";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { useRecoilState, useSetRecoilState } from "recoil";
+import {userAtom} from "../store/atoms/userAtom"
 
 export default function Signup() {
     const [firstName, setFirstName] = useState("");
@@ -14,6 +16,7 @@ export default function Signup() {
     const [password, setPassword] = useState("");
     const [errorMessage, setErrorMessage] = useState("");
     const navigate = useNavigate();
+    const setUserAtom = useSetRecoilState(userAtom);
 
     const handleSignup = async () => {
         try {
@@ -24,9 +27,12 @@ export default function Signup() {
                 password
             };
 
+            console.log("hi");
             const res = await axios.post("http://localhost:3000/api/v1/user/signup", userData);
             localStorage.setItem("token", res.data.token);
+            setUserAtom(username);
             navigate("/dashboard");
+
         } catch (error) {
             setErrorMessage("Signup failed. Please try again.");
         }
