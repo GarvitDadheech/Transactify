@@ -84,7 +84,7 @@ router.post("/login",async (req,res) => {
 
     const user = await User.findOne({
         username: req.body.username
-    });
+    })
 
     if(!user) {
         res.status(411).json({
@@ -105,7 +105,9 @@ router.post("/login",async (req,res) => {
     },JWT_SECRET);
 
     res.json({
-        token: token
+        token: token,
+        firstName: user.firstName,
+        lastName: user.lastName
     })
 
 }) 
@@ -125,10 +127,9 @@ router.put("/", authMiddleware, async (req, res) => {
     })
 })
 
-router.put("/bulk",authMiddleware,async (req,res) => {
-    const userId = req.userId;
+router.get("/bulk",async (req,res) => {
     const filter = req.query.filter || "";
-    const users = User.find({
+    const users = await User.find({
         $and: [
             {
                 $or: [

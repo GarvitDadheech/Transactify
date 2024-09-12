@@ -22,7 +22,7 @@ export default function Signin() {
             }
             const res = await axios.post("http://localhost:3000/api/v1/user/login",userData)
             localStorage.setItem("token", res.data.token);
-            setUserAtom(username);
+            setUserAtom(res.data.firstName+' '+res.data.lastName);
             navigate("/dashboard");
         }
         catch(error) {

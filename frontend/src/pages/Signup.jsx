@@ -27,10 +27,9 @@ export default function Signup() {
                 password
             };
 
-            console.log("hi");
             const res = await axios.post("http://localhost:3000/api/v1/user/signup", userData);
             localStorage.setItem("token", res.data.token);
-            setUserAtom(username);
+            setUserAtom(firstName);
             navigate("/dashboard");
 
         } catch (error) {
